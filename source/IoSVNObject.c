@@ -1,10 +1,3 @@
-//metadoc SVNObjecttxn copyright Your Name Here
-//metadoc SVNObjecttxn license BSD revised
-//metadoc SVNObjecttxn category Example
-/*metadoc SVNObjecttxn description
-Describe your addon here.
-*/
-
 #include "IoState.h"
 #include "IoNumber.h"
 #include "IoSVNObject.h"

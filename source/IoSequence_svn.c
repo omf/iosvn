@@ -1,4 +1,3 @@
-
 #include "IoSequence_svn.h"
 #include "IoSVNObject.h"
 #include "svn_string.h"
