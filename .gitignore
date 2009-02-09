@@ -1,0 +1,6 @@
+*.so
+*.o
+_build
+*.*~*
+Io*Init.c
+
