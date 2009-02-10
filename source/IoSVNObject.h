@@ -23,7 +23,8 @@ void        IoSVNObject_free(IoSVNObjectObject *self);
 
 IoObject*   IoSVNObject_printHandle(IoSVNObjectObject *self, IoObject *locals, IoMessage *m);
 IoObject*   IoSVNObject_ref(IoSVNObjectObject *self, IoObject *locals, IoMessage *m);
-IoObject*   IoSVNObject_ptr(IoSVNObjectObject *self, IoObject *locals, IoMessage *m);
+IoObject*   IoSVNObject_value(IoSVNObjectObject *self, IoObject *locals, IoMessage *m);
+IoObject*   IoSVNObject_setValue_(IoSVNObjectObject *self, IoObject *locals, IoMessage *m);
 
 #endif
 

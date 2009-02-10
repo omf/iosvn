@@ -27,7 +27,8 @@ IoObject *IoSVNObject_proto(void *state)
 		IoMethodTable methodTable[] = {
         {"printHandle", IoSVNObject_printHandle},
         {"ref", IoSVNObject_ref},
-        {"ptr", IoSVNObject_ptr},
+        {"value", IoSVNObject_value},
+        {"setValue", IoSVNObject_setValue_},
 		{NULL, NULL},
 		};
 		IoObject_addMethodTable_(self, methodTable);
@@ -100,12 +101,12 @@ IoObject *IoSVNObject_ref(IoSVNObjectObject *self, IoObject *locals, IoMessage *
     return ret;
 }
 
-IoObject *IoSVNObject_ptr(IoSVNObjectObject *self, IoObject *locals, IoMessage *m)
+IoObject *IoSVNObject_value(IoSVNObjectObject *self, IoObject *locals, IoMessage *m)
 {
     IoObject *ret = IONIL(self);
 
     if(!ISSVNObject(self)) {
-        printf("IoSVNObject_ptr INVALID OBJECT\n");
+        printf("IoSVNObject_value INVALID OBJECT\n");
     }
     else {
         ret = IONUMBER((intptr_t)DATA(self)->handle);
@@ -114,4 +115,18 @@ IoObject *IoSVNObject_ptr(IoSVNObjectObject *self, IoObject *locals, IoMessage *
     return ret;
 }
 
+IoObject *IoSVNObject_setValue_(IoSVNObjectObject *self, IoObject *locals, IoMessage *m)
+{
+    IoObject *ret = IONIL(self);
+
+    if(!ISSVNObject(self)) {
+        printf("IoSVNObject_setValue INVALID OBJECT\n");
+    }
+    else {
+        DATA(self)->handle = (intptr_t)IoMessage_locals_longArgAt_(m, locals, 0);
+        ret = self;
+    }
+    
+    return ret;
+}
 

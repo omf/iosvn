@@ -5,21 +5,22 @@ SVN do (
                         args := call message argsEvaluatedIn(call sender)
                         name = "svn_" .. _prefix .. name
                         args prepend(name)
-                        //args println
-                        libsvn performWithArgList("call", args)
-    )
-
+                        
+                        if(call message arguments at(0) name containsSeq(" ref") not,
+                            r := libsvn performWithArgList("call", args)
+                            Object clone setValue(r),
+    
+                            libsvn performWithArgList("call", args)
+                        )
+                )
 )
 
 Object do (
-    svnobj := nil
-    val := method(  if(self svnobj type == "nil", self svnobj = SVNObject clone)
-                    self svnobj ptr
-            )
-    ref := method(  if(self svnobj type == "nil", self svnobj = SVNObject clone)
-                    self svnobj ref
-            )
+    svnobj := method(self svnobj := SVNObject clone)
     
+    value := method(self svnobj value)
+    setValue := method(v, self svnobj setValue(v))
+    ref := method(self svnobj ref)
 )
 
 
