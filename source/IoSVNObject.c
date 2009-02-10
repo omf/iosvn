@@ -94,8 +94,7 @@ IoObject *IoSVNObject_ref(IoSVNObjectObject *self, IoObject *locals, IoMessage *
         printf("IoSVNObject_ref INVALID OBJECT\n");
     }
     else {
-        //printf("%x\n", (intptr_t)&((DATA(self)->handle)));
-        ret = IONUMBER((intptr_t)&((DATA(self)->handle)));
+        ret = IONUMBER((intptr_t)DATA(self));
     }
     
     return ret;
@@ -109,7 +108,6 @@ IoObject *IoSVNObject_ptr(IoSVNObjectObject *self, IoObject *locals, IoMessage *
         printf("IoSVNObject_ptr INVALID OBJECT\n");
     }
     else {
-        //printf("%x\n", (intptr_t)&((DATA(self)->handle)));
         ret = IONUMBER((intptr_t)DATA(self)->handle);
     }
     
