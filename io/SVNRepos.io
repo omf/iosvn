@@ -3,7 +3,7 @@ SVNRepos := Object clone do (
     
     _prefix := "repos_"
     libsvn := method(
-                    self libsvn := DynLib clone setPath("/usr/lib/libsvn_repos-1.so") open
+                    self libsvn := DynLib clone setPath("libsvn_repos-1." .. Addon dllSuffix) open
                     )
 
     

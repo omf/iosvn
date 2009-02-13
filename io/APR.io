@@ -19,9 +19,9 @@ APR := Object clone do (
                     )
 
     forward := method(
-                        name := call message name
+                        name := call message name asMutable
                         args := call message argsEvaluatedIn(call sender)
-                        if(name beginsWithSeq("apr_") not, name = "apr_" .. name)
+                        if(name beginsWithSeq("apr_") not, name prependSeq("apr_"))
                         r := libapr performWithArgList("call", args prepend(name))
                         Object clone setValue(r)
                     )

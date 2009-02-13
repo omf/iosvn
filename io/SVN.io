@@ -13,6 +13,8 @@ SVN do (
                             libsvn performWithArgList("call", args)
                         )
                 )
+
+    removeSlot("type")
 )
 
 Object do (
