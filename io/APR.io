@@ -1,22 +1,16 @@
-APR := Object clone do (
+Pool := Object clone
 
+APR := Object clone do (
     allocator := Object clone
-    topPool := Object clone
     
     init := method(
-                    initialize 
-                    allocator_create(self allocator ref) 
-                    pool_create_ex(self topPool ref, 0, 0, self allocator value)
-            )
-    
-    finish := method(
-                    APR pool_destroy(topPool value)
-                    APR terminate
-                )
-    
-    libapr := method(
-                    self libapr := DynLib clone setPath("/usr/lib/libapr-1.so") open
+                        initialize 
+                        allocator_create(allocator ref) 
                     )
+    
+    finish := method( terminate )
+    
+    libapr := method( self libapr := DynLib clone setPath("/usr/lib/libapr-1.so") open )
 
     forward := method(
                         name := call message name asMutable
@@ -27,8 +21,12 @@ APR := Object clone do (
                     )
                     
     pool_create := method(
-                        p := Object clone
-                        pool_create_ex(p ref, topPool value, 0, allocator value)
+                        p := Pool clone
+                        args := call message arguments
+                        if(args size > 0,
+                            pool_create_ex(p ref, doMessage(args at(0)) value, 0, allocator value),
+                            pool_create_ex(p ref, 0, 0, allocator value)
+                        )
                         p
                     )
 )

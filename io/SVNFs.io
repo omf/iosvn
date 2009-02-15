@@ -5,6 +5,9 @@ SVNFs := Object clone do (
     libsvn := method(
                     self libsvn := DynLib clone setPath("libsvn_fs-1." .. Addon dllSuffix) open
                     )
+    fsType := method(
+                    libsvn performWithArgList("call", list("svn_fs_type", call message arguments) flatten)
+                    )
 
-    type_ := method(a, b, c, libsvn performWithArgList("call", list("svn_fs_type", a, b, c)))
+    init := method( self _init )
 )

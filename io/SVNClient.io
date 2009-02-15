@@ -6,5 +6,5 @@ SVNClient := Object clone do (
                     self libsvn := DynLib clone setPath("libsvn_client-1." .. Addon dllSuffix) open
                     )
 
-    
+    init := method( self _init )
 )
